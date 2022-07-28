@@ -1,12 +1,6 @@
 const canvas = document.getElementsByTagName('canvas')[0];
 
 var ctx = canvas.getContext("2d");
-ctx.beginPath();
-ctx.rect(20, 40, 50, 50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath();
-
 /*
   This is how we draw the entity and to use types to make explicit the relationship
 */
@@ -28,15 +22,28 @@ type EntityDrawingArgumentsParams = Parameters<typeof ctx.rect>
  */
 class Entity {
 
+  ctx: typeof ctx;
   x: EntityDrawingArgumentsParams[0];
   y: EntityDrawingArgumentsParams[1];
   width: EntityDrawingArgumentsParams[2];
   height: EntityDrawingArgumentsParams[3];
-
-  draw(context: typeof ctx, ) {
+  
+  draw() {
+    ctx.beginPath();
+    ctx.rect(this.x, this.y, this.width, this.height);
+    ctx.fillStyle = "#FF0000";
+    ctx.fill();
+    ctx.closePath();
 
   }
 }
 
 const newEntityInstance = new Entity();
  
+newEntityInstance.ctx = ctx;
+newEntityInstance.x = 20;
+newEntityInstance.y = 40;
+newEntityInstance.width= 50;
+newEntityInstance.height= 50;
+
+newEntityInstance.draw();
