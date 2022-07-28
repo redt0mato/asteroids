@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "outDir": "public",
+    "removeComments": true,
+    "sourceMap": true
+  },
+}
