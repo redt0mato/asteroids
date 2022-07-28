@@ -3,6 +3,10 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "dev": "tsc"
+    "compile": "tsc && node app.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\""
+  },
+  "dependencies": {
+    "nodemon": "^2.0.19"
   }
 }
