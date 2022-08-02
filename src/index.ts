@@ -30,10 +30,12 @@ class Entity {
   
   draw() {
     ctx.beginPath();
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.fillStyle = "#FF0000";
-    ctx.fill();
-    ctx.closePath();
+    ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+    // ctx.rect(this.x, this.y, this.width, this.height);
+    // ctx.fillStyle = "#FF0000";
+    // ctx.fill();
+    // ctx.closePath();
 
   }
 }
@@ -47,3 +49,23 @@ newEntityInstance.width= 50;
 newEntityInstance.height= 50;
 
 newEntityInstance.draw();
+
+class MySingleton {
+
+  static instance: MySingleton;
+
+  private constructor() {
+      console.log("constructor called!");
+  }
+
+  public static getInstance(): MySingleton {
+      if (!MySingleton.instance) {
+          MySingleton.instance = new MySingleton();
+      }
+      return MySingleton.instance;
+  }
+
+  public logic() {
+      console.log("my logic!");
+  }
+}
