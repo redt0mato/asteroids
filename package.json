@@ -7,8 +7,8 @@
   "scripts": {
     "compile": "tsc",
     "dev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "npm run dev && parcel",
+    "build": "npm run compile && parcel build" 
   },
   "dependencies": {
     "nodemon": "^2.0.19"
