@@ -50,22 +50,33 @@ newEntityInstance.height= 50;
 
 newEntityInstance.draw();
 
-class MySingleton {
 
-  static instance: MySingleton;
+class GameWorld {
+
+  private static _instance: GameWorld = new GameWorld();
 
   private constructor() {
-      console.log("constructor called!");
+    if(GameWorld._instance){
+      throw new Error("Error: Instantiation failed: Use GameWorld.getInstance() instead of new.");
+    }
+    GameWorld._instance = this;
   }
 
-  public static getInstance(): MySingleton {
-      if (!MySingleton.instance) {
-          MySingleton.instance = new MySingleton();
+  public static getInstance(): GameWorld {
+      if (!GameWorld._instance) {
+          GameWorld._instance = new GameWorld();
       }
-      return MySingleton.instance;
+      return GameWorld._instance;
   }
 
-  public logic() {
+  public updateGameLogic() {
+    //not visual portion
       console.log("my logic!");
   }
+
+  public drawMap() {
+    //visual portion
+  }
 }
+
+const GameWorldSingleton = GameWorld.getInstance();
