@@ -50,7 +50,8 @@ newEntityInstance.height= 50;
 
 newEntityInstance.draw();
 
-
+console.log('hello world')
+console.log('asdfsadfwgat')
 class GameWorld {
 
   private static _instance: GameWorld = new GameWorld();

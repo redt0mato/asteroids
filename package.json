@@ -1,16 +1,16 @@
 {
   "devDependencies": {
-    "typescript": "^4.7.4",
-    "parcel": "latest"
+    "parcel": "latest",
+    "typescript": "^4.7.4"
   },
   "source": "public/index.html",
   "scripts": {
     "compile": "tsc",
-    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
-    "start": "npm run dev && parcel",
-    "build": "npm run compile && parcel build" 
+    "oldDev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
+    "dev": "concurrently \"npm run oldDev\" \"parcel\""
   },
   "dependencies": {
+    "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
   }
 }
