@@ -9,6 +9,7 @@ class GameWorld {
 
   private static _instance: GameWorld = new GameWorld(ctx);
   private entities: Entity[] = [];
+  private ctx: CanvasRenderingContext2D;
 
   private constructor(ctx) {
     if(GameWorld._instance){
@@ -16,6 +17,7 @@ class GameWorld {
     }
     GameWorld._instance = this;
     const shipInstance = new Ship(ctx, 100, 75, 1 ,1);
+    this.ctx = ctx;
     
     GameWorld._instance.entities = [shipInstance];
   }
@@ -33,6 +35,8 @@ class GameWorld {
   }
 
   public drawMap() {
+    GameWorld._instance.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     GameWorld._instance.entities.forEach((entity) => {
       entity.draw();
       entity.updatePosition();
