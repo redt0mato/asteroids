@@ -28,7 +28,7 @@ export class Entity {
     this.yVelocity = yVelocity;
   }
   updatePosition() {
-    this.xPos += this.xVelocity  ;
+    this.xPos += this.xVelocity;
     debugger;
     this.yPos += this.yVelocity;
   }
