@@ -1,4 +1,4 @@
-type EntityDrawingArgumentsParams = Parameters<CanvasPath["rect"]>
+type EntityDrawingArgumentsParams = Parameters<CanvasPath["arc"]>
 
 
 /**
@@ -20,12 +20,21 @@ export class Entity {
   yPos: EntityDrawingArgumentsParams[1];
   xVelocity: number;
   yVelocity: number;
-  width: EntityDrawingArgumentsParams[2];
-  height: EntityDrawingArgumentsParams[3];
-  
+  public constructor(ctx: CanvasRenderingContext2D, xPos, yPos, xVelocity: number, yVelocity ){
+    this.ctx = ctx;
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.xVelocity = xVelocity;
+    this.yVelocity = yVelocity;
+  }
+  updatePosition() {
+    this.xPos += this.xVelocity  ;
+    debugger;
+    this.yPos += this.yVelocity;
+  }
   draw() {
     this.ctx.beginPath();
-    this.ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+    this.ctx.arc(this.xPos, this.yPos, 50, 0, 2 * Math.PI);
     this.ctx.stroke();
   }
 }
@@ -48,5 +57,5 @@ export class Controller {
  
 export class Ship extends Entity {
   type = EntityTypes.SHIP
-  
+
 }

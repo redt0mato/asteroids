@@ -5,30 +5,24 @@ const canvas = document.getElementsByTagName('canvas')[0];
 
 var ctx = canvas.getContext("2d");
 
-const newEntityInstance = new Entity();
- 
-newEntityInstance.ctx = ctx;
-newEntityInstance.xPos = 20;
-newEntityInstance.yPos = 40;
-newEntityInstance.width= 50;
-newEntityInstance.height= 50;
-
-newEntityInstance.draw();
 class GameWorld {
 
-  private static _instance: GameWorld = new GameWorld();
-  private entities: Entity[];
+  private static _instance: GameWorld = new GameWorld(ctx);
+  private entities: Entity[] = [];
 
-  private constructor() {
+  private constructor(ctx) {
     if(GameWorld._instance){
       throw new Error("Error: Instantiation failed: Use GameWorld.getInstance() instead of new.");
     }
     GameWorld._instance = this;
+    const shipInstance = new Ship(ctx, 100, 75, undefined ,1);
+    
+    GameWorld._instance.entities = [shipInstance];
   }
 
   public static getInstance(): GameWorld {
       if (!GameWorld._instance) {
-          GameWorld._instance = new GameWorld();
+          GameWorld._instance = new GameWorld(ctx);
       }
       return GameWorld._instance;
   }
@@ -38,17 +32,21 @@ class GameWorld {
       console.log("my logic!");
   }
 
-  public static drawMap() {
+  public drawMap() {
+    GameWorld._instance.entities.forEach((entity) => {
+      entity.draw();
+      entity.updatePosition();
+    })
     //visual portion
 
     //Request below after x-y and other drawing information is finished
-    //requestAnimationFrame(GameWorld.drawMap)
+    requestAnimationFrame(GameWorld._instance.drawMap)
+    console.log('drawMap running')
   }
 }
 
 const GameWorldSingleton = GameWorld.getInstance();
-
-const shipInstance = new Ship();
+console.log(GameWorldSingleton)
  
 // newEntityInstance.ctx = ctx;
 // newEntityInstance.x = 20;
@@ -56,6 +54,6 @@ const shipInstance = new Ship();
 // newEntityInstance.width= 50;
 // newEntityInstance.height= 50;
 
-//requestAnimationFrame(GameWorld.drawMap)
+requestAnimationFrame(GameWorldSingleton.drawMap)
 
-console.log('hello world s')
+console.log('Game script running')

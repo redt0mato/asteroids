@@ -2,7 +2,9 @@
   "compilerOptions": {
     "outDir": "public",
     "removeComments": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true
   },
   "files": ["src/index.ts"]
 }
