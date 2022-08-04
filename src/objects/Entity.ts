@@ -15,23 +15,45 @@ type EntityDrawingArgumentsParams = Parameters<CanvasPath["arc"]>
  *
  */
 export class Entity {
-  ctx: CanvasRenderingContext2D;
-  xPos: EntityDrawingArgumentsParams[0];
-  yPos: EntityDrawingArgumentsParams[1];
-  xVelocity: number;
-  yVelocity: number;
+  public ctx: CanvasRenderingContext2D;
+  private _xPos: EntityDrawingArgumentsParams[0];
+  private _yPos: EntityDrawingArgumentsParams[1];
+  private _xVelocity: number;
+  private _yVelocity: number;
   public constructor(ctx: CanvasRenderingContext2D, xPos, yPos, xVelocity: number, yVelocity ){
     this.ctx = ctx;
-    this.xPos = xPos;
-    this.yPos = yPos;
-    this.xVelocity = xVelocity;
-    this.yVelocity = yVelocity;
+    this._xPos = xPos;
+    this._yPos = yPos;
+    this._xVelocity = xVelocity;
+    this._yVelocity = yVelocity;
   }
   updatePosition() {
-    this.xPos += this.xVelocity;
-    debugger;
-    this.yPos += this.yVelocity;
+    this.xPos += this._xVelocity;
+    this._yPos += this._yVelocity;
   }
+
+  set xPos(value: number) {
+    if(value === NaN || value === undefined) {
+      throw new Error('tried to set NaN or undefined')
+    }
+    this._xPos = value;
+  }
+
+  get xPos() {
+    return this._xPos;
+  }
+
+  set yPos(value: number) {
+    if(value === NaN || value === undefined) {
+      throw new Error('tried to set NaN or undefined')
+    }
+    this._yPos = value;
+  }
+
+  get yPos() {
+    return this._yPos;
+  }
+
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.xPos, this.yPos, 50, 0, 2 * Math.PI);
