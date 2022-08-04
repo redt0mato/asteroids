@@ -15,22 +15,38 @@ type EntityDrawingArgumentsParams = Parameters<CanvasPath["rect"]>
  *
  */
 export class Entity {
-
   ctx: CanvasRenderingContext2D;
-  x: EntityDrawingArgumentsParams[0];
-  y: EntityDrawingArgumentsParams[1];
+  xPos: EntityDrawingArgumentsParams[0];
+  yPos: EntityDrawingArgumentsParams[1];
+  xVelocity: number;
+  yVelocity: number;
   width: EntityDrawingArgumentsParams[2];
   height: EntityDrawingArgumentsParams[3];
   
   draw() {
-    console.log('we are drawing')
     this.ctx.beginPath();
     this.ctx.arc(100, 75, 50, 0, 2 * Math.PI);
     this.ctx.stroke();
-    // ctx.rect(this.x, this.y, this.width, this.height);
-    // ctx.fillStyle = "#FF0000";
-    // ctx.fill();
-    // ctx.closePath();
   }
 }
 
+enum EntityTypes {
+  ASTEROID,
+  SHIP,
+  BULLET
+}
+
+
+/*
+  -Go forward
+  -Go backward
+  -Needs to be able to rotate
+*/
+export class Controller {
+
+}
+ 
+export class Ship extends Entity {
+  type = EntityTypes.SHIP
+  
+}
