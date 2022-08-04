@@ -56,7 +56,13 @@ export class Entity {
 
   draw() {
     this.ctx.beginPath();
-    this.ctx.arc(this.xPos, this.yPos, 50, 0, 2 * Math.PI);
+    this.ctx.strokeStyle = 'red';
+    this.ctx.arc(this.xPos, this.yPos, 50, 0,  Math.PI);
+    this.ctx.stroke();
+
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = 'blue';
+    this.ctx.arc(this.xPos, this.yPos, 50,  Math.PI, 2 * Math.PI);
     this.ctx.stroke();
   }
 }
