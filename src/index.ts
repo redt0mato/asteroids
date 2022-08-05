@@ -20,7 +20,7 @@ class GameWorld {
       throw new Error("Error: Instantiation failed: Use GameWorld.getInstance() instead of new.");
     }
     GameWorld._instance = this;
-    const shipInstance = new Ship(ctx, 100, 75, 1 ,1);
+    const shipInstance = new Ship(ctx, 100, 75, 0, 0);
     this.ctx = ctx;
     
     GameWorld._instance.entities = [shipInstance];
