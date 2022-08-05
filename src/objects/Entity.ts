@@ -14,22 +14,22 @@ type EntityDrawingArgumentsParams = Parameters<CanvasPath["arc"]>
  * @returns An instance we can use to draw shapes
  *
  */
+
+
 export class Entity {
   public ctx: CanvasRenderingContext2D;
   private _xPos: EntityDrawingArgumentsParams[0];
   private _yPos: EntityDrawingArgumentsParams[1];
-  private _xVelocity: number;
-  private _yVelocity: number;
-  public constructor(ctx: CanvasRenderingContext2D, xPos, yPos, xVelocity: number, yVelocity ){
+  private _vel: [number, number];
+  public constructor(ctx: CanvasRenderingContext2D, xPos, yPos, xVelocity: number = 0, yVelocity = 0){
     this.ctx = ctx;
     this._xPos = xPos;
     this._yPos = yPos;
-    this._xVelocity = xVelocity;
-    this._yVelocity = yVelocity;
+    this._vel = [xVelocity, yVelocity];
   }
   updatePosition() {
-    this.xPos += this._xVelocity;
-    this._yPos += this._yVelocity;
+    this.xPos += this._vel[0];
+    this._yPos += this._vel[1];
   }
 
   set xPos(value: number) {
@@ -52,6 +52,14 @@ export class Entity {
 
   get yPos() {
     return this._yPos;
+  }
+
+  get vel() {
+    return this._vel;
+  }
+
+  set vel(newVel) {
+    this._vel = newVel;
   }
 
   draw() {
@@ -83,7 +91,22 @@ export class Controller {
 
 }
  
+export enum DIRECTIONS{
+  UP,
+  DOWN,
+  //Do left right later
+}
 export class Ship extends Entity {
   type = EntityTypes.SHIP
+  power(direction: DIRECTIONS) {
+    const [xVel, yVel] = this.vel
+    let newVel : [number, number] = [xVel, yVel];
+    if(direction === DIRECTIONS.UP) {
+      newVel = [xVel, yVel+1];
+    } else if(direction === DIRECTIONS.DOWN) {
+      newVel = [xVel, yVel-1];
+    }
+    this.vel = newVel;
+  }
 
 }

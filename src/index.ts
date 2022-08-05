@@ -1,16 +1,20 @@
 
-import {Entity, Ship} from './objects/entity'
+import {DIRECTIONS, Entity, Ship} from './objects/entity'
 
 const canvas = document.getElementsByTagName('canvas')[0];
 
 var ctx = canvas.getContext("2d");
+
+class KeyListener {
+
+}
 
 class GameWorld {
 
   private static _instance: GameWorld = new GameWorld(ctx);
   private entities: Entity[] = [];
   private ctx: CanvasRenderingContext2D;
-
+  
   private constructor(ctx) {
     if(GameWorld._instance){
       throw new Error("Error: Instantiation failed: Use GameWorld.getInstance() instead of new.");
@@ -20,6 +24,16 @@ class GameWorld {
     this.ctx = ctx;
     
     GameWorld._instance.entities = [shipInstance];
+
+    document.onkeydown = function(event) {
+      //up
+      if(event.keyCode === 38) {
+        shipInstance.power(DIRECTIONS.UP);
+      } else if(event.keyCode === 40) {
+        shipInstance.power(DIRECTIONS.DOWN);
+      }
+    }
+
   }
 
   public static getInstance(): GameWorld {
@@ -57,6 +71,7 @@ console.log(GameWorldSingleton)
 // newEntityInstance.y = 40;
 // newEntityInstance.width= 50;
 // newEntityInstance.height= 50;
+
 
 requestAnimationFrame(GameWorldSingleton.drawMap)
 
