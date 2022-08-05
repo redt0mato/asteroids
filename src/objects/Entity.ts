@@ -94,6 +94,8 @@ export class Controller {
 export enum DIRECTIONS{
   UP,
   DOWN,
+  LEFT,
+  RIGHT
   //Do left right later
 }
 export class Ship extends Entity {
@@ -102,9 +104,14 @@ export class Ship extends Entity {
     const [xVel, yVel] = this.vel
     let newVel : [number, number] = [xVel, yVel];
     if(direction === DIRECTIONS.UP) {
-      newVel = [xVel, yVel+1];
-    } else if(direction === DIRECTIONS.DOWN) {
       newVel = [xVel, yVel-1];
+    } else if(direction === DIRECTIONS.DOWN) {
+      newVel = [xVel, yVel+1];
+    } else if(direction === DIRECTIONS.LEFT) {
+      debugger
+      newVel = [xVel-1, yVel];
+    } else if(direction === DIRECTIONS.RIGHT) {
+      newVel = [xVel+1, yVel];
     }
     this.vel = newVel;
   }
