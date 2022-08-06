@@ -14,8 +14,6 @@ type EntityDrawingArgumentsParams = Parameters<CanvasPath["arc"]>
  * @returns An instance we can use to draw shapes
  *
  */
-
-
 export class Entity {
   public ctx: CanvasRenderingContext2D;
   private _xPos: EntityDrawingArgumentsParams[0];
