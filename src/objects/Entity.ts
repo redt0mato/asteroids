@@ -106,7 +106,6 @@ export class Ship extends Entity {
     } else if(direction === DIRECTIONS.DOWN) {
       newVel = [xVel, yVel+1];
     } else if(direction === DIRECTIONS.LEFT) {
-      debugger
       newVel = [xVel-1, yVel];
     } else if(direction === DIRECTIONS.RIGHT) {
       newVel = [xVel+1, yVel];
