@@ -22,7 +22,8 @@ class GameWorld {
     const shipInstance = new Ship(ctx, 100, 75, 0, 0);
     this.ctx = ctx;
     
-    GameWorld._instance.entities = [shipInstance];
+    const mockAsteroidInstance = new Entity(ctx, 250, 250, 0, 0)
+    GameWorld._instance.entities = [shipInstance, mockAsteroidInstance];
 
     setupControls(shipInstance)
   }
