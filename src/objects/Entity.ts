@@ -116,6 +116,7 @@ export class Ship extends Entity {
   }
 }
 
+//I wanted this to be the child class of Ship but there are no inner classes in JS atm.
 class Bullet extends Entity {
   type = EntityTypes.BULLET;
 }

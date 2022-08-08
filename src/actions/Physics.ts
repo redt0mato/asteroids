@@ -57,7 +57,8 @@ export function calculatePhysics(GameWorld) {
       50
     )
   ) {
-    console.log("collision detected");
+    //remove
+    GameWorld.getInstance().entities = [];
   } else {
     console.log("nothing collided");
   }
