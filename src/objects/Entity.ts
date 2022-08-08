@@ -1,11 +1,10 @@
-type EntityDrawingArgumentsParams = Parameters<CanvasPath["arc"]>
-
+type EntityDrawingArgumentsParams = Parameters<CanvasPath["arc"]>;
 
 /**
- * Common class to store drawing and positioning an entity in Asteroids. 
+ * Common class to store drawing and positioning an entity in Asteroids.
  *
  * @remarks
- * Eg asteroids, bullets, and the ship. Will contain power-up. 
+ * Eg asteroids, bullets, and the ship. Will contain power-up.
  *
  * @param x - x position on a 2D grid.
  * @param y - y position on a 2D grid.
@@ -19,7 +18,13 @@ export class Entity {
   private _xPos: EntityDrawingArgumentsParams[0];
   private _yPos: EntityDrawingArgumentsParams[1];
   private _vel: [number, number];
-  public constructor(ctx: CanvasRenderingContext2D, xPos, yPos, xVelocity: number = 0, yVelocity = 0){
+  public constructor(
+    ctx: CanvasRenderingContext2D,
+    xPos,
+    yPos,
+    xVelocity: number = 0,
+    yVelocity = 0
+  ) {
     this.ctx = ctx;
     this._xPos = xPos;
     this._yPos = yPos;
@@ -31,8 +36,8 @@ export class Entity {
   }
 
   set xPos(value: number) {
-    if(value === NaN || value === undefined) {
-      throw new Error('tried to set NaN or undefined')
+    if (value === NaN || value === undefined) {
+      throw new Error("tried to set NaN or undefined");
     }
     this._xPos = value;
   }
@@ -42,8 +47,8 @@ export class Entity {
   }
 
   set yPos(value: number) {
-    if(value === NaN || value === undefined) {
-      throw new Error('tried to set NaN or undefined')
+    if (value === NaN || value === undefined) {
+      throw new Error("tried to set NaN or undefined");
     }
     this._yPos = value;
   }
@@ -62,13 +67,13 @@ export class Entity {
 
   draw() {
     this.ctx.beginPath();
-    this.ctx.strokeStyle = 'red';
-    this.ctx.arc(this.xPos, this.yPos, 50, 0,  Math.PI);
+    this.ctx.strokeStyle = "red";
+    this.ctx.arc(this.xPos, this.yPos, 50, 0, Math.PI);
     this.ctx.stroke();
 
     this.ctx.beginPath();
-    this.ctx.strokeStyle = 'blue';
-    this.ctx.arc(this.xPos, this.yPos, 50,  Math.PI, 2 * Math.PI);
+    this.ctx.strokeStyle = "blue";
+    this.ctx.arc(this.xPos, this.yPos, 50, Math.PI, 2 * Math.PI);
     this.ctx.stroke();
   }
 }
@@ -76,41 +81,41 @@ export class Entity {
 enum EntityTypes {
   ASTEROID,
   SHIP,
-  BULLET
+  BULLET,
 }
-
 
 /*
   -Go forward
   -Go backward
   -Needs to be able to rotate
 */
-export class Controller {
+export class Controller {}
 
-}
- 
-export enum DIRECTIONS{
+export enum DIRECTIONS {
   UP,
   DOWN,
   LEFT,
-  RIGHT
+  RIGHT,
   //Do left right later
 }
 export class Ship extends Entity {
-  type = EntityTypes.SHIP
+  type = EntityTypes.SHIP;
   power(direction: DIRECTIONS) {
-    const [xVel, yVel] = this.vel
-    let newVel : [number, number] = [xVel, yVel];
-    if(direction === DIRECTIONS.UP) {
-      newVel = [xVel, yVel-1];
-    } else if(direction === DIRECTIONS.DOWN) {
-      newVel = [xVel, yVel+1];
-    } else if(direction === DIRECTIONS.LEFT) {
-      newVel = [xVel-1, yVel];
-    } else if(direction === DIRECTIONS.RIGHT) {
-      newVel = [xVel+1, yVel];
+    const [xVel, yVel] = this.vel;
+    let newVel: [number, number] = [xVel, yVel];
+    if (direction === DIRECTIONS.UP) {
+      newVel = [xVel, yVel - 1];
+    } else if (direction === DIRECTIONS.DOWN) {
+      newVel = [xVel, yVel + 1];
+    } else if (direction === DIRECTIONS.LEFT) {
+      newVel = [xVel - 1, yVel];
+    } else if (direction === DIRECTIONS.RIGHT) {
+      newVel = [xVel + 1, yVel];
     }
     this.vel = newVel;
   }
+}
 
+class Bullet extends Entity {
+  type = EntityTypes.BULLET;
 }
