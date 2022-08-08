@@ -114,6 +114,30 @@ export class Ship extends Entity {
     }
     this.vel = newVel;
   }
+
+  fireBullet(GameWorld) {
+    //spawn bullet
+    //bullet is initialized with pos and veloicty 3x
+
+    //TO-DO do not like the casting below
+    const {
+      ctx,
+      xPos: shipXPos,
+      yPos: shipYPos,
+      vel: shipVelocity,
+    } = this as Ship;
+
+    //TO-DO 10 is really the size of the ship + padding
+    const newBullet = new Bullet(
+      ctx,
+      shipXPos + 10 * shipVelocity[0],
+      shipYPos + 10 * shipVelocity[1],
+      shipVelocity[0] * 3, //TO-DO need to put a max-speed on the ship
+      shipVelocity[1] * 3
+    );
+
+    GameWorld.getInstance().entities.push(newBullet);
+  }
 }
 
 //I wanted this to be the child class of Ship but there are no inner classes in JS atm.
