@@ -38,9 +38,18 @@ class GameWorld {
   }
 
   public checkIfOutOfBounds(entity) {
-    // if(entity.) {
+    //TO-DO below is size
+    if (entity.xPos < -50) {
+      entity.xPos = 770;
+    } else if (entity.xPos > 770) {
+      entity.xPos = -50;
+    }
 
-    // }
+    if (entity.yPos < -50) {
+      entity.yPos = 850;
+    } else if (entity.yPos > 850) {
+      entity.yPos = -50;
+    }
     return true;
   }
 
@@ -52,14 +61,10 @@ class GameWorld {
     //translate it on a mirror
     //POC only teleport from bottom-to-top
     //if upper thing is above then teleport
-    GameWorld._instance.entities.forEach((entity) => {
-      if (GameWorld._instance.checkIfOutOfBounds(entity)) {
-      }
-    });
-
     GameWorld._instance.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     GameWorld._instance.entities.forEach((entity) => {
+      GameWorld._instance.checkIfOutOfBounds(entity);
       entity.draw();
       entity.updatePosition();
     });
