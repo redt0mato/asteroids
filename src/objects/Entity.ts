@@ -35,7 +35,7 @@ export class Entity {
   }
   updatePosition() {
     this.xPos += this._vel[0];
-    this._yPos += this._vel[1];
+    this.yPos += this._vel[1];
   }
 
   set xPos(value: number) {

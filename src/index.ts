@@ -5,6 +5,8 @@ import { calculatePhysics } from "./actions/Physics";
 const canvas = document.getElementsByTagName("canvas")[0];
 
 var ctx = canvas.getContext("2d");
+
+//TO-DO update type definitions more
 class GameWorld {
   private static _instance: GameWorld = new GameWorld(ctx);
   public entities: Entity[] = [];
@@ -35,8 +37,26 @@ class GameWorld {
     return GameWorld._instance;
   }
 
+  public checkIfOutOfBounds(entity) {
+    // if(entity.) {
+
+    // }
+    return true;
+  }
+
+  public updatePositionOfEntity(entity) {}
+
   //really drawing the next frame
   public drawMap() {
+    //detect if anything out-of-bounds
+    //translate it on a mirror
+    //POC only teleport from bottom-to-top
+    //if upper thing is above then teleport
+    GameWorld._instance.entities.forEach((entity) => {
+      if (GameWorld._instance.checkIfOutOfBounds(entity)) {
+      }
+    });
+
     GameWorld._instance.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     GameWorld._instance.entities.forEach((entity) => {
