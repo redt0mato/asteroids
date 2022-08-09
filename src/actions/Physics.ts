@@ -1,7 +1,7 @@
 //Currently will just do bullets being fired?
 //Collision eventually circles collide with other circles.
 
-import { Entity, Ship } from "../objects/entity";
+import { Entity, EntityTypes, Ship } from "../objects/entity";
 
 /*
   Calculate distance between 2 points in 2D Cartesian coordinate system
@@ -44,22 +44,39 @@ export function calculatePhysics(GameWorld) {
     We should improve this.
   */
 
-  //Possible improvement hard to infer what the argument should be without looking at the code
-  const [ship, asteroid] = GameWorld.getInstance().entities as [Ship, Entity];
+  const entitiesArray = GameWorld.getInstance().entities;
 
-  console.log("calculatePhysics running");
-  //TO-DO Remove radius magic number and update. Put it on the entity instance
-  if (
-    doCirclesCollide(
-      [ship.xPos, ship.yPos],
-      [asteroid.xPos, asteroid.yPos],
-      50,
-      50
-    )
-  ) {
-    //remove
-    GameWorld.getInstance().entities = [];
-  } else {
-    console.log("nothing collided");
+  let entity1, entity2;
+
+  for (let i = 0; i < entitiesArray.length; i++) {
+    for (let j = i + 1; j < entitiesArray.length; j++) {
+      entity1 = entitiesArray[i];
+      entity2 = entitiesArray[j];
+      if (
+        doCirclesCollide(
+          [entity1.xPos, entity1.yPos],
+          [entity2.xPos, entity2.yPos],
+          entity1.type === EntityTypes.BULLET ? 10 : 50,
+          entity2.type === EntityTypes.BULLET ? 10 : 50 //TODO check the type
+        )
+      ) {
+        //remove
+        const oldEntitiesArray = GameWorld.getInstance().entities;
+
+        let newArray = oldEntitiesArray.slice(0, i);
+
+        newArray = newArray
+          .concat(oldEntitiesArray.slice(i + 1, j))
+          .concat(oldEntitiesArray.slice(j + 1));
+
+        GameWorld.getInstance().entities = newArray;
+      } else {
+        console.log("nothing collided");
+      }
+    }
   }
+  //Possible improvement hard to infer what the argument should be without looking at the code
+  // const [ship, asteroid] = GameWorld.getInstance().entities as [Ship, Entity];
+
+  //TO-DO Remove radius magic number and update. Put it on the entity instance
 }

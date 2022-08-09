@@ -18,6 +18,9 @@ export class Entity {
   private _xPos: EntityDrawingArgumentsParams[0];
   private _yPos: EntityDrawingArgumentsParams[1];
   private _vel: [number, number];
+  public type: EntityTypes = EntityTypes.ENTITY;
+  public radius: number = 50;
+
   public constructor(
     ctx: CanvasRenderingContext2D,
     xPos,
@@ -68,20 +71,21 @@ export class Entity {
   draw() {
     this.ctx.beginPath();
     this.ctx.strokeStyle = "red";
-    this.ctx.arc(this.xPos, this.yPos, 50, 0, Math.PI);
+    this.ctx.arc(this.xPos, this.yPos, this.radius, 0, Math.PI);
     this.ctx.stroke();
 
     this.ctx.beginPath();
     this.ctx.strokeStyle = "blue";
-    this.ctx.arc(this.xPos, this.yPos, 50, Math.PI, 2 * Math.PI);
+    this.ctx.arc(this.xPos, this.yPos, this.radius, Math.PI, 2 * Math.PI);
     this.ctx.stroke();
   }
 }
 
-enum EntityTypes {
+export enum EntityTypes {
   ASTEROID,
   SHIP,
   BULLET,
+  ENTITY,
 }
 
 /*
@@ -98,6 +102,8 @@ export enum DIRECTIONS {
   RIGHT,
   //Do left right later
 }
+
+const bulletRadius = 5;
 export class Ship extends Entity {
   type = EntityTypes.SHIP;
   power(direction: DIRECTIONS) {
@@ -130,8 +136,8 @@ export class Ship extends Entity {
     //TO-DO 10 is really the size of the ship + padding
     const newBullet = new Bullet(
       ctx,
-      shipXPos + 10 * shipVelocity[0],
-      shipYPos + 10 * shipVelocity[1],
+      shipXPos + (55 + 5) * shipVelocity[0],
+      shipYPos + (55 + 5) * shipVelocity[1],
       shipVelocity[0] * 3, //TO-DO need to put a max-speed on the ship
       shipVelocity[1] * 3
     );
@@ -143,4 +149,5 @@ export class Ship extends Entity {
 //I wanted this to be the child class of Ship but there are no inner classes in JS atm.
 class Bullet extends Entity {
   type = EntityTypes.BULLET;
+  public radius: number = 5;
 }

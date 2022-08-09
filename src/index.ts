@@ -25,7 +25,7 @@ class GameWorld {
     const mockAsteroidInstance = new Entity(ctx, 250, 250, 0, 0);
     GameWorld._instance.entities = [shipInstance, mockAsteroidInstance];
 
-    setupControls(shipInstance);
+    setupControls(shipInstance, GameWorld);
   }
 
   public static getInstance(): GameWorld {

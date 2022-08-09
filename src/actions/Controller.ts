@@ -4,20 +4,22 @@
  *
  */
 
-import { DIRECTIONS } from "../objects/entity";
+import { DIRECTIONS, Ship } from "../objects/entity";
 
-export function setupControls(shipInstance) {
-  document.onkeydown = function(event) {
-    if(event.keyCode === 37) {
+export function setupControls(shipInstance: Ship, GameWorld) {
+  document.onkeydown = function (event) {
+    if (event.keyCode === 37) {
       shipInstance.power(DIRECTIONS.LEFT);
-    } else if(event.keyCode === 38) {
+    } else if (event.keyCode === 38) {
       shipInstance.power(DIRECTIONS.UP);
     } else if (event.keyCode === 39) {
       shipInstance.power(DIRECTIONS.RIGHT);
-    } else if(event.keyCode === 40) {
+    } else if (event.keyCode === 40) {
       shipInstance.power(DIRECTIONS.DOWN);
+    } else if (event.keyCode === 32) {
+      shipInstance.fireBullet(GameWorld);
     }
-  }
+  };
 }
 
 //32 is spacebar keycode
