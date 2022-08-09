@@ -88,11 +88,6 @@ export enum EntityTypes {
   ENTITY,
 }
 
-/*
-  -Go forward
-  -Go backward
-  -Needs to be able to rotate
-*/
 export class Controller {}
 
 export enum DIRECTIONS {
@@ -100,7 +95,6 @@ export enum DIRECTIONS {
   DOWN,
   LEFT,
   RIGHT,
-  //Do left right later
 }
 
 const bulletRadius = 5;
@@ -122,9 +116,6 @@ export class Ship extends Entity {
   }
 
   fireBullet(GameWorld) {
-    //spawn bullet
-    //bullet is initialized with pos and veloicty 3x
-
     //TO-DO do not like the casting below
     const {
       ctx,

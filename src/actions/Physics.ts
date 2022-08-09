@@ -1,6 +1,3 @@
-//Currently will just do bullets being fired?
-//Collision eventually circles collide with other circles.
-
 import { Entity, EntityTypes, Ship } from "../objects/entity";
 
 /*

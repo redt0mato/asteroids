@@ -35,11 +35,6 @@ class GameWorld {
     return GameWorld._instance;
   }
 
-  public updateGameState() {
-    //not visual portion
-    console.log("my logic!");
-  }
-
   //really drawing the next frame
   public drawMap() {
     GameWorld._instance.ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -54,7 +49,6 @@ class GameWorld {
     // requestAnimationFrame(GameWorld._instance.drawMap);
   }
   public requestGameAnimationFrame() {
-    //calculate Physics
     calculatePhysics(GameWorld);
 
     //calculate nextMapFrame
@@ -64,11 +58,5 @@ class GameWorld {
 }
 
 const GameWorldSingleton = GameWorld.getInstance();
-
-// newEntityInstance.ctx = ctx;
-// newEntityInstance.x = 20;
-// newEntityInstance.y = 40;
-// newEntityInstance.width= 50;
-// newEntityInstance.height= 50;
 
 requestAnimationFrame(GameWorldSingleton.requestGameAnimationFrame);
