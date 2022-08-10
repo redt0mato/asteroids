@@ -6,7 +6,7 @@
   "source": "public/index.html",
   "scripts": {
     "compile": "tsc",
-    "oldDev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
+    "oldDev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile || exit 1\"",
     "dev": "concurrently \"npm run oldDev\" \"parcel\""
   },
   "dependencies": {
