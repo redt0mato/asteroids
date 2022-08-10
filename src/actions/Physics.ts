@@ -50,6 +50,7 @@ export function calculatePhysics(GameWorld) {
       entity1 = entitiesArray[i];
       entity2 = entitiesArray[j];
       if (
+        entity1.type !== entity2.type &&
         doCirclesCollide(
           [entity1.xPos, entity1.yPos],
           [entity2.xPos, entity2.yPos],
