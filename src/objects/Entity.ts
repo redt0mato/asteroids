@@ -160,6 +160,16 @@ class Bullet extends Entity {
   public radius: number = 5;
 }
 
-class Asteroid extends Entity {
+export class Asteroid extends Entity {
   type = EntityTypes.ASTEROID;
+  public constructor(...args) {
+    /*
+     * TO-DO
+     * following points of imprveoemtn
+     * -can we stop doing the args[0] is there a way to not have to do that/syntactical sugar at the minimum?
+     * -make the relationship between velocity of asteroid which is always lower than ship more explicit
+     * -type the constructor args to match Asteroid
+     */
+    super(args[0], args[1], args[2], Math.random() * 1.2, Math.random() * 1.2);
+  }
 }

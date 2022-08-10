@@ -1,4 +1,4 @@
-import { Entity, Ship } from "./objects/entity";
+import { Asteroid, Entity, Ship } from "./objects/entity";
 import { setupControls } from "./actions/Controller";
 import { calculatePhysics } from "./actions/Physics";
 
@@ -28,7 +28,7 @@ class GameWorld {
     this.ctx = ctx;
 
     //TO-DO generate random spawn points for asteroid
-    const mockAsteroidInstance = new Entity(ctx, 250, 250);
+    const mockAsteroidInstance = new Asteroid(ctx, 250, 250);
     GameWorld._instance.entities = [shipInstance, mockAsteroidInstance];
 
     setupControls(shipInstance, GameWorld);
