@@ -126,6 +126,10 @@ export class Ship extends Entity {
   }
 
   fireBullet(GameWorld) {
+    if (GameWorld.getInstance().entities.indexOf(this) === -1) {
+      return;
+    }
+
     //TO-DO do not like the casting below
     const {
       ctx,
@@ -135,7 +139,7 @@ export class Ship extends Entity {
       radius,
     } = this as Ship;
 
-    //TO-DO 10 is really the size of the ship + padding
+    //TO-DO make explicit the relationship between 3 and 1.5 see power(ship)
     const newBullet = new Bullet(
       ctx,
       shipXPos +
@@ -154,4 +158,8 @@ export class Ship extends Entity {
 class Bullet extends Entity {
   type = EntityTypes.BULLET;
   public radius: number = 5;
+}
+
+class Asteroid extends Entity {
+  type = EntityTypes.ASTEROID;
 }
