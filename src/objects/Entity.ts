@@ -129,8 +129,10 @@ export class Ship extends Entity {
     //TO-DO 10 is really the size of the ship + padding
     const newBullet = new Bullet(
       ctx,
-      shipXPos + 1.05 * (shipVelocity[0] / Math.abs(shipVelocity[0] || 1)),
-      shipYPos + 1.05 * (shipVelocity[1] / Math.abs(shipVelocity[1] || 1)),
+      shipXPos +
+        2.25 * radius * (shipVelocity[0] / Math.abs(shipVelocity[0] || 1)),
+      shipYPos +
+        2.25 * radius * (shipVelocity[1] / Math.abs(shipVelocity[1] || 1)),
       shipVelocity[0] * 3, //TO-DO need to put a max-speed on the ship
       shipVelocity[1] * 3
     );
