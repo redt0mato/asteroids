@@ -100,6 +100,7 @@ export enum DIRECTIONS {
 const bulletRadius = 5;
 export class Ship extends Entity {
   type = EntityTypes.SHIP;
+  public radius: number = 15;
   power(direction: DIRECTIONS) {
     const [xVel, yVel] = this.vel;
     let newVel: [number, number] = [xVel, yVel];
@@ -122,13 +123,14 @@ export class Ship extends Entity {
       xPos: shipXPos,
       yPos: shipYPos,
       vel: shipVelocity,
+      radius,
     } = this as Ship;
 
     //TO-DO 10 is really the size of the ship + padding
     const newBullet = new Bullet(
       ctx,
-      shipXPos + (55 + 5) * shipVelocity[0],
-      shipYPos + (55 + 5) * shipVelocity[1],
+      shipXPos + 1.05 * (shipVelocity[0] / Math.abs(shipVelocity[0] || 1)),
+      shipYPos + 1.05 * (shipVelocity[1] / Math.abs(shipVelocity[1] || 1)),
       shipVelocity[0] * 3, //TO-DO need to put a max-speed on the ship
       shipVelocity[1] * 3
     );

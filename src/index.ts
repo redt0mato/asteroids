@@ -11,6 +11,7 @@ class GameWorld {
   private static _instance: GameWorld = new GameWorld(ctx);
   public entities: Entity[] = [];
   private ctx: CanvasRenderingContext2D;
+  public maximumSpeed = 1; //This is for both the x-y direction
 
   private constructor(ctx) {
     if (GameWorld._instance) {
@@ -21,10 +22,13 @@ class GameWorld {
 
     //Initialize the internal game state
     GameWorld._instance = this;
-    const shipInstance = new Ship(ctx, 100, 75, 0, 0);
+
+    const { height, width } = document.getElementsByTagName("canvas")[0];
+    const shipInstance = new Ship(ctx, width / 2, height / 2, 0, 0);
     this.ctx = ctx;
 
-    const mockAsteroidInstance = new Entity(ctx, 250, 250, 0, 0);
+    //TO-DO generate random spawn points for asteroid
+    const mockAsteroidInstance = new Entity(ctx, 250, 250);
     GameWorld._instance.entities = [shipInstance, mockAsteroidInstance];
 
     setupControls(shipInstance, GameWorld);

@@ -53,8 +53,8 @@ export function calculatePhysics(GameWorld) {
         doCirclesCollide(
           [entity1.xPos, entity1.yPos],
           [entity2.xPos, entity2.yPos],
-          entity1.type === EntityTypes.BULLET ? 10 : 50,
-          entity2.type === EntityTypes.BULLET ? 10 : 50 //TODO check the type
+          entity1.radius,
+          entity2.radius
         )
       ) {
         //remove
