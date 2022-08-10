@@ -27,9 +27,17 @@ class GameWorld {
     const shipInstance = new Ship(ctx, width / 2, height / 2, 0, 0);
     this.ctx = ctx;
 
+    GameWorld._instance.entities = [shipInstance];
     //TO-DO generate random spawn points for asteroid
-    const mockAsteroidInstance = new Asteroid(ctx, 250, 250);
-    GameWorld._instance.entities = [shipInstance, mockAsteroidInstance];
+    for (let i = 0; i < 5; i++) {
+      GameWorld._instance.entities.push(
+        new Asteroid(
+          ctx,
+          Math.random() * canvas.width,
+          Math.random() * canvas.height
+        )
+      );
+    }
 
     setupControls(shipInstance, GameWorld);
   }
