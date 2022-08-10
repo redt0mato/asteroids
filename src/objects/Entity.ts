@@ -1,5 +1,7 @@
 type EntityDrawingArgumentsParams = Parameters<CanvasPath["arc"]>;
 
+const shipMaxSpeed = 1; //along both axis
+
 /**
  * Common class to store drawing and positioning an entity in Asteroids.
  *
@@ -113,7 +115,14 @@ export class Ship extends Entity {
     } else if (direction === DIRECTIONS.RIGHT) {
       newVel = [xVel + 1, yVel];
     }
-    this.vel = newVel;
+    this.vel = [
+      Math.abs(newVel[0]) <= 1.5
+        ? newVel[0]
+        : (newVel[0] / Math.abs(newVel[0] || 1)) * 1.5,
+      Math.abs(newVel[1]) <= 1.5
+        ? newVel[1]
+        : (newVel[1] / Math.abs(newVel[1] || 1)) * 1.5,
+    ];
   }
 
   fireBullet(GameWorld) {
@@ -133,8 +142,8 @@ export class Ship extends Entity {
         2.25 * radius * (shipVelocity[0] / Math.abs(shipVelocity[0] || 1)),
       shipYPos +
         2.25 * radius * (shipVelocity[1] / Math.abs(shipVelocity[1] || 1)),
-      shipVelocity[0] * 3, //TO-DO need to put a max-speed on the ship
-      shipVelocity[1] * 3
+      (shipVelocity[0] / Math.abs(shipVelocity[0] || 1)) * 3,
+      (shipVelocity[1] / Math.abs(shipVelocity[1] || 1)) * 3
     );
 
     GameWorld.getInstance().entities.push(newBullet);
