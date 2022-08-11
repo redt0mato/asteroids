@@ -5,7 +5,7 @@ import { calculatePhysics } from "./actions/Physics";
 const canvas = document.getElementsByTagName("canvas")[0];
 
 var ctx = canvas.getContext("2d");
-
+console.log("running");
 //TO-DO update type definitions more
 class GameWorld {
   private static _instance: GameWorld = new GameWorld(ctx);

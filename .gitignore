@@ -1,4 +1,6 @@
-public
+public/**.js
+public/**.map
 node_modules
 .parcel-cache
-dist
+dist/**.js
+dist/**.map
