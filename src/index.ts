@@ -12,6 +12,7 @@ class GameWorld {
   public entities: Entity[] = [];
   private ctx: CanvasRenderingContext2D;
   public maximumSpeed = 1; //This is for both the x-y direction
+  public isGameRunning = true;
 
   private constructor(ctx) {
     if (GameWorld._instance) {
@@ -19,6 +20,7 @@ class GameWorld {
         "Error: Instantiation failed: Use GameWorld.getInstance() instead of new."
       );
     }
+    //TO-DO move initialize game state to another function so I can start/spawn a new game
 
     //Initialize the internal game state
     GameWorld._instance = this;
@@ -40,6 +42,23 @@ class GameWorld {
     }
 
     setupControls(shipInstance, GameWorld);
+
+    const startButton = document.getElementById("startButton");
+    const stopButton = document.getElementById("stopButton");
+
+    if (startButton) {
+      startButton.addEventListener("click", () => {
+        GameWorld._instance.isGameRunning = true;
+        requestAnimationFrame(GameWorld._instance.requestGameAnimationFrame);
+      });
+    }
+
+    if (stopButton) {
+      stopButton.addEventListener("click", () => {
+        GameWorld._instance.isGameRunning = false;
+        GameWorld._instance.ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+    }
   }
 
   public static getInstance(): GameWorld {
@@ -86,6 +105,10 @@ class GameWorld {
     // requestAnimationFrame(GameWorld._instance.drawMap);
   }
   public requestGameAnimationFrame() {
+    if (GameWorld._instance.isGameRunning !== true) {
+      return;
+    }
+
     calculatePhysics(GameWorld);
 
     //calculate nextMapFrame
@@ -95,5 +118,3 @@ class GameWorld {
 }
 
 const GameWorldSingleton = GameWorld.getInstance();
-
-requestAnimationFrame(GameWorldSingleton.requestGameAnimationFrame);
