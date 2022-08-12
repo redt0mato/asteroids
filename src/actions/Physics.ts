@@ -1,4 +1,4 @@
-import { Entity, EntityTypes, Ship } from "../objects/entity";
+import { Entity, EntityTypes, Ship } from "../objects/Entity";
 
 /*
   Calculate distance between 2 points in 2D Cartesian coordinate system

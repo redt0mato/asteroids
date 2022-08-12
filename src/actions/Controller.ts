@@ -4,7 +4,7 @@
  *
  */
 
-import { DIRECTIONS, Ship } from "../objects/entity";
+import { DIRECTIONS, Ship } from "../objects/Entity";
 
 export function setupControls(shipInstance: Ship, GameWorld) {
   document.onkeydown = function (event) {

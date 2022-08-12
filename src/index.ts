@@ -1,4 +1,4 @@
-import { Asteroid, Entity, Ship } from "./objects/entity";
+import { Asteroid, Entity, Ship } from "./objects/Entity";
 import { setupControls } from "./actions/Controller";
 import { calculatePhysics } from "./actions/Physics";
 
