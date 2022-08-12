@@ -6,7 +6,7 @@
   },
   "source": "public/index.html",
   "scripts": {
-    "build": "parcel build src/index.html",
+    "build": "parcel build public/index.html",
     "compile": "tsc",
     "oldDev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile || exit 1\"",
     "tidy": "prettier **/* --write",
@@ -15,5 +15,10 @@
   "dependencies": {
     "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
+  },
+  "targets": {
+    "default": {
+      "distDir": "./"
+    }
   }
 }
