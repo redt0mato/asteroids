@@ -25,6 +25,8 @@ jobs:
 
     steps:
       - uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
@@ -44,4 +46,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
