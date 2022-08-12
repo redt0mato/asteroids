@@ -1,12 +1,14 @@
 {
   "devDependencies": {
     "parcel": "latest",
+    "prettier": "^2.7.1",
     "typescript": "^4.7.4"
   },
   "source": "public/index.html",
   "scripts": {
     "compile": "tsc",
     "oldDev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile || exit 1\"",
+    "tidy": "prettier **/* --write",
     "dev": "concurrently \"npm run oldDev\" \"parcel\""
   },
   "dependencies": {
