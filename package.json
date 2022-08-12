@@ -10,7 +10,8 @@
     "compile": "tsc",
     "oldDev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile || exit 1\"",
     "tidy": "prettier **/* --write",
-    "dev": "concurrently \"npm run oldDev\" \"parcel\""
+    "dev": "concurrently \"npm run oldDev\" \"parcel\"",
+    "prod": "npm run compile && npm run build"
   },
   "dependencies": {
     "concurrently": "^7.3.0",
