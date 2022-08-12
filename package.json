@@ -6,6 +6,7 @@
   },
   "source": "public/index.html",
   "scripts": {
+    "build": "parcel build src/index.html",
     "compile": "tsc",
     "oldDev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile || exit 1\"",
     "tidy": "prettier **/* --write",
