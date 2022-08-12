@@ -19,8 +19,6 @@ jobs:
         run: npm run prod
       - uses: actions/jekyll-build-pages@v1
       - uses: actions/upload-pages-artifact@v0
-      - name: tar thing
-        run: tar \
 
   report-build-status:
     runs-on: ubuntu-latest
@@ -45,4 +43,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
