@@ -40,3 +40,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
