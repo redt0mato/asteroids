@@ -16,10 +16,5 @@
   "dependencies": {
     "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
-  },
-  "targets": {
-    "default": {
-      "distDir": "./"
-    }
   }
 }
