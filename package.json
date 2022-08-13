@@ -19,7 +19,7 @@
   },
   "targets": {
     "default": {
-      "distDir": "./" //Parcel is using this
+      "distDir": "./" 
     }
   }
 }
