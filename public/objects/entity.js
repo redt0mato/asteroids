@@ -171,4 +171,4 @@ var Asteroid = (function (_super) {
     return Asteroid;
 }(Entity));
 exports.Asteroid = Asteroid;
-//# sourceMappingURL=entity.js.map
+//# sourceMappingURL=Entity.js.map
