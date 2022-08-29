@@ -16,7 +16,6 @@ const shipMaxSpeed = 1; //along both axis
  *
  */
 export class Entity {
-  public ctx: CanvasRenderingContext2D;
   private _xPos: EntityDrawingArgumentsParams[0];
   private _yPos: EntityDrawingArgumentsParams[1];
   private _vel: [number, number];
@@ -24,7 +23,7 @@ export class Entity {
   public radius: number = 50;
 
   public constructor(
-    ctx: CanvasRenderingContext2D,
+    public ctx: CanvasRenderingContext2D,
     xPos,
     yPos,
     xVelocity: number = 0,
