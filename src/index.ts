@@ -20,7 +20,6 @@ class GameWorld {
         "Error: Instantiation failed: Use GameWorld.getInstance() instead of new."
       );
     }
-    //TO-DO move initialize game state to another function so I can start/spawn a new game
 
     //Initialize the internal game state
     GameWorld._instance = this;
@@ -68,7 +67,7 @@ class GameWorld {
     return GameWorld._instance;
   }
 
-  public checkIfOutOfBounds(entity) {
+  public checkIfOutOfBounds(entity: Entity) {
     //TO-DO below is size
     if (entity.xPos < -50) {
       entity.xPos = 770;
