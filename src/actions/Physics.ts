@@ -6,7 +6,7 @@ import { Entity, EntityTypes, Ship } from "../objects/Entity";
 function calculateDistanceBetweenTwoPoints(
   coords1: [number, number],
   coords2: [number, number]
-) {
+): number {
   return Math.sqrt(
     Math.pow(Math.abs(coords1[0] - coords2[0]), 2) +
       Math.pow(Math.abs(coords1[1] - coords2[1]), 2)
@@ -26,7 +26,7 @@ type DoCirclesCollideArgs = [
 /*
   Closed form solution for determining if two circles intersect
 */
-function doCirclesCollide(...args: DoCirclesCollideArgs) {
+function doCirclesCollide(...args: DoCirclesCollideArgs): boolean {
   //Pythagorean Theorem
   const [coords1, coords2, radius1, radius2] = args;
   return (

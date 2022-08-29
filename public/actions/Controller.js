@@ -1,25 +1,21 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.setupControls = void 0;
-var Entity_1 = require("../objects/Entity");
-function setupControls(shipInstance, GameWorld) {
+import { DIRECTIONS } from "../objects/Entity";
+export function setupControls(shipInstance, GameWorld) {
     document.onkeydown = function (event) {
         if (event.keyCode === 37) {
-            shipInstance.power(Entity_1.DIRECTIONS.LEFT);
+            shipInstance.power(DIRECTIONS.LEFT);
         }
         else if (event.keyCode === 38) {
-            shipInstance.power(Entity_1.DIRECTIONS.UP);
+            shipInstance.power(DIRECTIONS.UP);
         }
         else if (event.keyCode === 39) {
-            shipInstance.power(Entity_1.DIRECTIONS.RIGHT);
+            shipInstance.power(DIRECTIONS.RIGHT);
         }
         else if (event.keyCode === 40) {
-            shipInstance.power(Entity_1.DIRECTIONS.DOWN);
+            shipInstance.power(DIRECTIONS.DOWN);
         }
         else if (event.keyCode === 32) {
             shipInstance.fireBullet(GameWorld);
         }
     };
 }
-exports.setupControls = setupControls;
 //# sourceMappingURL=Controller.js.map

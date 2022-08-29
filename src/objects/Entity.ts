@@ -150,6 +150,7 @@ export class Ship extends Entity {
       (shipVelocity[1] / Math.abs(shipVelocity[1] || 1)) * 3
     );
 
+    const a = new Set(["hi"]);
     GameWorld.getInstance().entities.push(newBullet);
   }
 }
