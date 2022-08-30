@@ -74,7 +74,7 @@ export function calculatePhysics(GameWorld) {
     }
   }
   //Possible improvement hard to infer what the argument should be without looking at the code
-  // const [ship, asteroid] = GameWorld.getInstance().entities as [Ship, Entity];
+  const [ship, asteroid] = GameWorld.getInstance().entities as [Ship, Entity];
 
   //TO-DO Remove radius magic number and update. Put it on the entity instance
 }
