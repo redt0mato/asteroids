@@ -4,7 +4,7 @@ const shipMaxSpeed = 1; //along both axis
 
 /**
  * Common class to store drawing and positioning an entity in Asteroids.
- *
+ * @constructor
  * @remarks
  * Eg asteroids, bullets, and the ship. The ship is actually a circle.
  *
@@ -103,6 +103,8 @@ export enum DIRECTIONS {
 const bulletRadius = 5;
 
 /**
+ * Constructor
+ * @augments Entity
  * Ship class to store logic for player-controlled ship.
  * Currently there should ONLY be one in the game world instance.
  *
