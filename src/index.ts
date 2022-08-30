@@ -7,7 +7,7 @@ const canvas = document.getElementsByTagName("canvas")[0];
 var ctx = canvas.getContext("2d");
 console.log("running");
 //TO-DO update type definitions more
-class GameWorld {
+export class GameWorld {
   private static _instance: GameWorld = new GameWorld(ctx);
   public entities: Entity[] = [];
   private ctx: CanvasRenderingContext2D;
@@ -108,7 +108,7 @@ class GameWorld {
       return;
     }
 
-    calculatePhysics(GameWorld);
+    calculatePhysics(GameWorld._instance);
 
     //calculate nextMapFrame
     GameWorld._instance.drawMap();

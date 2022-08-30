@@ -1,5 +1,5 @@
 import { Entity, EntityTypes, Ship } from "../objects/Entity";
-
+import { GameWorld } from "../index";
 /*
   Calculate distance between 2 points in 2D Cartesian coordinate system
 */
@@ -33,7 +33,7 @@ function doCirclesCollide(...args: DoCirclesCollideArgs): boolean {
     calculateDistanceBetweenTwoPoints(coords1, coords2) < radius1 + radius2
   );
 }
-export function calculatePhysics(GameWorld) {
+export function calculatePhysics(arg: GameWorld) {
   /*
     GameWorldSingleton
     This is a N^2 approach if we iterate over number of objects.
@@ -41,7 +41,7 @@ export function calculatePhysics(GameWorld) {
     We should improve this.
   */
 
-  const entitiesArray = GameWorld.getInstance().entities;
+  const entitiesArray = arg.entities;
 
   let entity1, entity2;
 
