@@ -5,10 +5,12 @@ import { calculatePhysics } from "./actions/Physics";
 const canvas = document.getElementsByTagName("canvas")[0];
 
 var ctx = canvas.getContext("2d");
-console.log("running");
 //TO-DO update type definitions more
 export class GameWorld {
-  private static _instance: GameWorld = new GameWorld(ctx);
+  private static _instance: GameWorld =
+    console.log("first") || new GameWorld(ctx); //Note it's sort of jank to initialize this because IMO we dependon the closure formed
+  // from the function it should be loaded in explicitly
+  private static _instance2: any = console.log("third");
   public entities: Entity[] = [];
   private ctx: CanvasRenderingContext2D;
   public maximumSpeed = 1; //This is for both the x-y direction
@@ -24,12 +26,13 @@ export class GameWorld {
     //Initialize the internal game state
     GameWorld._instance = this;
 
+    //TO-DO move the set-up of asteroids and ships to their own parts
     const { height, width } = document.getElementsByTagName("canvas")[0];
     const shipInstance = new Ship(ctx, width / 2, height / 2, 0, 0);
     this.ctx = ctx;
 
     GameWorld._instance.entities = [shipInstance];
-    //TO-DO generate random spawn points for asteroid
+
     for (let i = 0; i < 5; i++) {
       GameWorld._instance.entities.push(
         new Asteroid(
@@ -40,6 +43,7 @@ export class GameWorld {
       );
     }
 
+    //TO-DO move set-up controls to their own parts
     setupControls(shipInstance, GameWorld);
 
     const startButton = document.getElementById("startButton");
@@ -61,6 +65,7 @@ export class GameWorld {
   }
 
   public static getInstance(): GameWorld {
+    console.log("fourth");
     if (!GameWorld._instance) {
       GameWorld._instance = new GameWorld(ctx);
     }
