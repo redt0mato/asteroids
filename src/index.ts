@@ -7,8 +7,7 @@ const canvas = document.getElementsByTagName("canvas")[0];
 var ctx = canvas.getContext("2d");
 //TO-DO update type definitions more
 export class GameWorld {
-  private static _instance: GameWorld =
-    console.log("first") || new GameWorld(ctx); //Note it's sort of jank to initialize this because IMO we dependon the closure formed
+  private static _instance: GameWorld = new GameWorld(ctx); //Note it's sort of jank to initialize this because IMO we dependon the closure formed
   // from the function it should be loaded in explicitly
   private static _instance2: any = console.log("third");
   public entities: Entity[] = [];
